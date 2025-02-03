@@ -22,10 +22,10 @@ class Circle{
         if (Math.random()>.5)
             this.dy = - this.dy;
     }
-    update1(DT, gravity){
+    update1(DT, gravity, gravityStrength){
         //gravity
-        this.dx +=  7 * gravity[0] * DT
-        this.dy += -7 * gravity[1] * DT
+        this.dx +=  gravityStrength * gravity[0] * DT
+        this.dy += -gravityStrength * gravity[1] * DT
         //air friction
         this.dy *= .999
         this.dx *= .999

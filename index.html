@@ -1,12 +1,25 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Bouncing Circles</title>
+		<title>Bouncy Balls</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: "Roboto", Arial, sans-serif;
+			}
+		</style>
 	</head>
 	<body style="margin:0">
 		<canvas id="glcanvas" width="100%" height="100%">
 			Your browser does not support HTML5
 		</canvas>
+		<div id="controlField" style="display: none; width: 70%; height: 40%; position: absolute; top: 20%; left: 10%; background-color: rgba(200, 100, 100, 0.7); flex-direction: column; align-items: center; padding: 5%; border: 5px solid black; border-radius: 15px;">
+			<label style="font-size: 32pt;" for="gravityStrength">Gravity:</label><br>
+			<input style="font-size: 32pt; width: 25%; text-align: center; border-radius: 15px; padding: 5px;" type="text" id="gravityStrength" value="7"/>
+			<button style="font-size: 32pt; margin-top: auto; padding: 20px;" id="changeGravityStrength">Change</button>
+		</div>
 
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"

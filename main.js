@@ -5,8 +5,39 @@ import {initShaderProgram} from "./shader.js";
 main();
 async function main() {
 	console.log('This is working');
+	let gravityStrength = 7;
 
-	
+	const gravityInputField = document.getElementById('controlField');
+	const gravityStrengthInput = document.getElementById('gravityStrength');
+	const changeGravityStrengthButton = document.getElementById('changeGravityStrength');
+
+	changeGravityStrengthButton.addEventListener('click', () => {
+		if (!isNaN(parseFloat(gravityStrengthInput.value))) {
+			gravityStrength = parseFloat(gravityStrengthInput.value);
+			gravityInputField.style.display = 'none';
+		}
+		
+	});
+
+	const controlButton = document.createElement('button');
+	controlButton.innerText = 'Mess with gravity!';
+	controlButton.style.fontSize = '32pt';
+	controlButton.style.borderWidth = '5px';
+	controlButton.style.borderRadius = '10px';
+	controlButton.style.backgroundColor = 'rgba(100, 150, 250, 1)';
+
+	controlButton.style.position = 'absolute';
+	controlButton.style.top = '10px';
+	controlButton.style.left = '10px';
+	document.body.appendChild(controlButton);
+
+	controlButton.addEventListener('click', () => {
+		if (gravityInputField.style.display === 'none') {
+			gravityInputField.style.display = 'flex';
+		} else {
+			gravityInputField.style.display = 'none';
+		}
+	});
 
 	let gravity = [0, 0]
 	if (DeviceOrientationEvent && 
@@ -15,7 +46,7 @@ async function main() {
 
 		const button = document.createElement('button');
 		button.innerText = 'Please grant device orientation permission to enable gravity!';
-		button.style.fontSize = '24px';
+		button.style.fontSize = '32pt';
 		button.style.borderWidth = '5px';
 		button.style.borderRadius = '10px';
 		button.style.backgroundColor = 'rgba(200, 100, 100, 0.7)';
@@ -148,7 +179,7 @@ async function main() {
 
 		// Update the scene
 		for (let i = 0; i < circleList.length; i++) {
-			circleList[i].update1(DT, gravity);
+			circleList[i].update1(DT, gravity, gravityStrength);
 		}
 		for (let j = 0; j < circleList.length; j++) {
 			for (let i = 0; i < circleList.length; i++) {
