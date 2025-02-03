@@ -7,17 +7,40 @@ async function main() {
 	console.log('This is working');
 	let gravityStrength = 7;
 
-	const gravityInputField = document.getElementById('controlField');
+	const controlPanel = document.getElementById('controlField');
 	const gravityStrengthInput = document.getElementById('gravityStrength');
 	const changeGravityStrengthButton = document.getElementById('changeGravityStrength');
 
 	changeGravityStrengthButton.addEventListener('click', () => {
 		if (!isNaN(parseFloat(gravityStrengthInput.value))) {
 			gravityStrength = parseFloat(gravityStrengthInput.value);
-			gravityInputField.style.display = 'none';
+			controlPanel.style.display = 'none';
 		}
-		
 	});
+
+	const numCirclesInput = document.getElementById('numCircles');
+	const changenumCirclesButton = document.getElementById('changeNumCircles');
+
+	changenumCirclesButton.addEventListener('click', () => {
+		if (!isNaN(parseFloat(numCirclesInput.value))) {
+			createCircles(circleList, parseFloat(numCirclesInput.value));
+			controlPanel.style.display = 'none';
+		}
+	});
+
+	const addForceButton = document.getElementById('addForce');
+
+	addForceButton.addEventListener('click', () => {
+		addForce(circleList);
+		controlPanel.style.display = 'none';
+	});
+
+	const addForce = (circleList) => {
+		for (let i = 0; i < circleList.length; i++) {
+			circleList[i].dx += Math.random()*4+8 * (Math.random() > 0.5 ? 1 : -1);
+			circleList[i].dy += Math.random()*4+8 * (Math.random() > 0.5 ? 1 : -1);
+		}
+	};
 
 	const controlButton = document.createElement('button');
 	controlButton.innerText = 'Mess with gravity!';
@@ -32,10 +55,10 @@ async function main() {
 	document.body.appendChild(controlButton);
 
 	controlButton.addEventListener('click', () => {
-		if (gravityInputField.style.display === 'none') {
-			gravityInputField.style.display = 'flex';
+		if (controlPanel.style.display === 'none') {
+			controlPanel.style.display = 'flex';
 		} else {
-			gravityInputField.style.display = 'none';
+			controlPanel.style.display = 'none';
 		}
 	});
 
@@ -146,21 +169,25 @@ async function main() {
 		let centerDistanceSquared = (circle1.x-circle2.x)**2+(circle1.y-circle2.y)**2
 		return centerDistanceSquared <= (circle1.size + circle2.size)**2
 	}
-	while (circleList.length < NUM_CIRCLES && attempts < 5000) {
-		attempts += 1
-		let r = new Circle(xlow, xhigh, ylow, yhigh);
-		let rIntersects = false;
-		for (let i = 0; i < circleList.length; i++) if (circlesIntersect(r, circleList[i])) {
-			rIntersects = true;
-			console.log("skipping possible circle")
-			break;
+	const createCircles = (circleList, numCircles) => {
+		circleList.length = 0;
+		while (circleList.length < numCircles && attempts < 5000) {
+			attempts += 1
+			let r = new Circle(xlow, xhigh, ylow, yhigh);
+			let rIntersects = false;
+			for (let i = 0; i < circleList.length; i++) if (circlesIntersect(r, circleList[i])) {
+				rIntersects = true;
+				console.log("skipping possible circle")
+				break;
+			}
+			if (rIntersects) continue;
+			
+			circleList.push(r);
+			console.log("circle created:", r)
 		}
-		if (rIntersects) continue;
-		
-		circleList.push(r);
-		console.log("circle created:", r)
+		console.log(circleList.length, "circles created out of desired", numCircles )
 	}
-	console.log(circleList.length, "circles created out of desired", NUM_CIRCLES )
+	createCircles(circleList, NUM_CIRCLES);
 
 	//
 	// Main render loop

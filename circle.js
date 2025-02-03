@@ -7,7 +7,7 @@ class Circle{
         this.ylow = ylow;
         this.yhigh = yhigh;
         this.color = [Math.random(), Math.random(), Math.random(), 1]
-        this.size = 1 - Math.random()*.5; // half edge between 1.0 and 2.0
+        this.size = (Math.random() < .2) ? (2 - Math.random()*1) : (1 - Math.random()*.5);
         const minx = xlow+this.size;
         const maxx = xhigh-this.size;
         this.x = minx + Math.random()*(maxx-minx);
@@ -15,10 +15,10 @@ class Circle{
         const maxy = yhigh-this.size;
         this.y = miny + Math.random()*(maxy-miny);
         this.degrees = 0;
-        this.dx = Math.random()*2+2; // 2 to 4
+        this.dx = Math.random()*4+8; // 2 to 4
         if (Math.random()>.5)
             this.dx = -this.dx;
-        this.dy = Math.random()*2+2;
+        this.dy = Math.random()*4+8;
         if (Math.random()>.5)
             this.dy = - this.dy;
     }
