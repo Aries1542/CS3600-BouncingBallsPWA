@@ -24,8 +24,8 @@ class Circle{
     }
     update1(DT, gravity){
         //gravity
-        this.dx += 6 * gravity[0] * DT
-        this.dy += 6 * gravity[1] * DT
+        this.dx +=  7 * gravity[0] * DT
+        this.dy += -7 * gravity[1] * DT
         //air friction
         this.dy *= .999
         this.dx *= .999

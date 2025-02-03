@@ -12,7 +12,7 @@ async function main() {
 		typeof DeviceOrientationEvent.requestPermission === 'function') {
 		// iOS 13+
 		const button = document.createElement('button');
-		button.innerText = 'Request Device Orientation Permission';
+		button.innerText = 'Please grant device orientation permission';
 		document.body.appendChild(button);
 
 		button.addEventListener('click', () => {
@@ -95,7 +95,7 @@ async function main() {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 10;
+	const NUM_CIRCLES = 25;
 	const circleList = []
 	let attempts = 0
 	const circlesIntersect = (circle1, circle2) => {
