@@ -44,6 +44,7 @@ async function main() {
 
 	const controlButton = document.createElement('button');
 	controlButton.innerText = 'Mess with gravity!';
+	controlButton.style.color = 'black';
 	controlButton.style.fontSize = '32pt';
 	controlButton.style.borderWidth = '5px';
 	controlButton.style.borderRadius = '10px';
@@ -69,6 +70,7 @@ async function main() {
 
 		const button = document.createElement('button');
 		button.innerText = 'Please grant device orientation permission to enable gravity!';
+		button.style.color = 'black';
 		button.style.fontSize = '32pt';
 		button.style.borderWidth = '5px';
 		button.style.borderRadius = '10px';
