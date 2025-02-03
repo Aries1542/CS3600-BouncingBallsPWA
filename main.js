@@ -8,8 +8,27 @@ async function main() {
 
 
 	let gravity = [0, 0]
-	if (!(window.DeviceOrientationEvent == undefined)) {
-		window.addEventListener("deviceorientation", handleOrientation)
+	if (DeviceOrientationEvent && 
+		typeof DeviceOrientationEvent.requestPermission === 'function') {
+		// iOS 13+
+		const button = document.createElement('button');
+		button.innerText = 'Request Device Orientation Permission';
+		document.body.appendChild(button);
+
+		button.addEventListener('click', () => {
+			DeviceOrientationEvent.requestPermission()
+				.then(response => {
+					if (response === 'granted') {
+						window.addEventListener('deviceorientation', handleOrientation, true);
+						button.remove();
+					} else {
+						alert('Orientation permission denied')
+					}
+				})
+				.catch(console.error);
+		});
+	} else {
+		window.addEventListener('deviceorientation', handleOrientation, true);
 	}
 
 	function handleOrientation(event) {
