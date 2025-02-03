@@ -6,19 +6,19 @@ main();
 async function main() {
 	console.log('This is working');
 
-
 	
+
 	let gravity = [0, 0]
 	if (DeviceOrientationEvent && 
 		typeof DeviceOrientationEvent.requestPermission === 'function') {
 		// iOS 13+
 
 		const button = document.createElement('button');
-		button.innerText = 'Please grant device orientation permission to use this app!';
+		button.innerText = 'Please grant device orientation permission to enable gravity!';
+		button.style.fontSize = '24px';
 		button.style.borderWidth = '5px';
 		button.style.borderRadius = '10px';
 		button.style.backgroundColor = 'rgba(200, 100, 100, 0.7)';
-		button.style.color = 'white';
 
 		button.style.width = '50%';
 		button.style.height = '20%';
