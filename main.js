@@ -37,8 +37,8 @@ async function main() {
 
 	const addForce = (circleList) => {
 		for (let i = 0; i < circleList.length; i++) {
-			circleList[i].dx += Math.random()*4+8 * (Math.random() > 0.5 ? 1 : -1);
-			circleList[i].dy += Math.random()*4+8 * (Math.random() > 0.5 ? 1 : -1);
+			circleList[i].dx += Math.random()*4+8 * (circleList[i].dx >= 0 ? 1 : -1);
+			circleList[i].dy += Math.random()*4+8 * (circleList[i].dy >= 0 ? 1 : -1);
 		}
 	};
 
