@@ -22,7 +22,7 @@ class Circle{
         if (Math.random()>.5)
             this.dy = - this.dy;
     }
-    update1(DT){
+    update1(DT, gravity){
         //gravity
         this.dx += 6 * gravity[0] * DT
         this.dy += 6 * gravity[1] * DT

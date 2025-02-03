@@ -76,7 +76,7 @@ async function main() {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 30;
+	const NUM_CIRCLES = 10;
 	const circleList = []
 	let attempts = 0
 	const circlesIntersect = (circle1, circle2) => {
@@ -116,7 +116,7 @@ async function main() {
 
 		// Update the scene
 		for (let i = 0; i < circleList.length; i++) {
-			circleList[i].update1(DT);
+			circleList[i].update1(DT, gravity);
 		}
 		for (let j = 0; j < circleList.length; j++) {
 			for (let i = 0; i < circleList.length; i++) {
